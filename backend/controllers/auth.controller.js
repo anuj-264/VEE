@@ -27,8 +27,8 @@ export const signUp = async (req, res) => {
         res.cookie("token", token, {
             httpOnly: true,
             maxAge: 30 * 24 * 60 * 60 * 1000,
-            sameSite: "strict",
-            secure: false, // Set to true if using HTTPS
+            sameSite: "None",
+            secure: true, // Set to true if using HTTPS
         });
         const createdUser = await User.findById(user._id).select("-password -_v");
         //send response
@@ -65,8 +65,8 @@ export const logIn = async (req, res) => {
         res.cookie("token", token, {
             httpOnly: true,
             maxAge: 30 * 24 * 60 * 60 * 1000, // 30 days
-            sameSite: "strict",
-            secure: false
+            sameSite: "None",
+            secure: true, // Set to true if using HTTPS
         });
 
         return res.status(200).json({
